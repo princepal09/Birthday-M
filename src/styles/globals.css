@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/* ─── Base Reset & Global Styles ────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: "Outfit", system-ui, -apple-system, sans-serif;
+  background: #050010;
+  color: rgba(255, 220, 240, 0.9);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Prevent text selection on the experience (keeps it feeling cinematic) */
+#root {
+  min-height: 100vh;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(10, 0, 20, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 100, 180, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 100, 180, 0.5);
+}
+
+/* ─── Selection ─────────────────────────────────────────────────────────────── */
+
+::selection {
+  background: rgba(255, 100, 180, 0.3);
+  color: #fff;
+}
+
+/* ─── Focus Styles ──────────────────────────────────────────────────────────── */
+
+*:focus-visible {
+  outline: 2px solid rgba(255, 150, 200, 0.5);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Utility: Hide visually but keep accessible ────────────────────────────── */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

@@ -1,0 +1,71 @@
+import { createContext, useContext, useState, useCallback, useMemo } from "react";
+import { STEPS } from "../utils/constants";
+
+// ─── Context ─────────────────────────────────────────────────────────────────
+const AppContext = createContext(null);
+
+// ─── Provider ────────────────────────────────────────────────────────────────
+export function AppProvider({ children }) {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const [hasStartedExperience, setHasStartedExperience] = useState(false);
+  const [currentStep, setCurrentStep] = useState(STEPS.LOADER);
+
+  const advanceStep = useCallback((step) => {
+    setCurrentStep(step);
+  }, []);
+
+  const startMusic = useCallback(() => {
+    setIsMusicPlaying(true);
+  }, []);
+
+  const stopMusic = useCallback(() => {
+    setIsMusicPlaying(false);
+  }, []);
+
+  const finishLoading = useCallback(() => {
+    setIsLoading(false);
+    setCurrentStep(STEPS.QUOTE);
+  }, []);
+
+  const startExperience = useCallback(() => {
+    setHasStartedExperience(true);
+    setCurrentStep(STEPS.EXPERIENCE);
+  }, []);
+
+  const value = useMemo(
+    () => ({
+      isLoading,
+      isMusicPlaying,
+      hasStartedExperience,
+      currentStep,
+      advanceStep,
+      startMusic,
+      stopMusic,
+      finishLoading,
+      startExperience,
+    }),
+    [
+      isLoading,
+      isMusicPlaying,
+      hasStartedExperience,
+      currentStep,
+      advanceStep,
+      startMusic,
+      stopMusic,
+      finishLoading,
+      startExperience,
+    ]
+  );
+
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
+}
+
+// ─── Custom Hook ─────────────────────────────────────────────────────────────
+export function useAppContext() {
+  const context = useContext(AppContext);
+  if (!context) {
+    throw new Error("useAppContext must be used within an AppProvider");
+  }
+  return context;
+}
