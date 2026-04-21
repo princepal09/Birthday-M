@@ -1,66 +1,45 @@
-import { motion } from "framer-motion";
 import { useAppContext } from "../../context/AppContext";
 import { STEPS } from "../../utils/constants";
-import Typewriter from "./Typewriter";
+import TypewriterQuote from "./Typewriter";
 import FloatingHearts from "./FloatingHearts";
 import NameReveal from "./NameReveal";
 import CTAButton from "./CTAButton";
-import { useNavigate } from "react-router";
-import Experience from "./Experience";
+
+/**
+ * Hero section — orchestrates the intro flow:
+ * Typewriter Quote → Name Reveal → CTA Button
+ * Background: FloatingHearts + ambient gradient orbs
+ */
 export default function Hero() {
-  const { isLoading, currentStep, hasStartedExperience } = useAppContext();
-  const navigate = useNavigate();
+  const { isLoading, currentStep } = useAppContext();
+
   if (isLoading) return null;
 
   return (
-    <motion.section
+    <section
       id="hero-section"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(135deg, #0a0015 0%, #12002a 25%, #0d0020 50%, #08001a 75%, #050010 100%)",
-      }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1.2, ease: "easeOut" }}
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-ambient animate-fade-in"
     >
       {/* Background ambient orbs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <div
-          className="absolute rounded-full"
+          className="ambient-orb"
           style={{
-            width: "600px",
-            height: "600px",
-            top: "-10%",
-            right: "-10%",
-            background:
-              "radial-gradient(circle, rgba(120,40,200,0.12), transparent 70%)",
-            filter: "blur(80px)",
+            width: 500,
+            height: 500,
+            top: "-8%",
+            right: "-8%",
+            background: "radial-gradient(circle, rgba(120,40,200,0.1), transparent 70%)",
           }}
         />
         <div
-          className="absolute rounded-full"
+          className="ambient-orb"
           style={{
-            width: "500px",
-            height: "500px",
-            bottom: "-15%",
-            left: "-10%",
-            background:
-              "radial-gradient(circle, rgba(255,60,120,0.1), transparent 70%)",
-            filter: "blur(80px)",
-          }}
-        />
-        <div
-          className="absolute rounded-full"
-          style={{
-            width: "300px",
-            height: "300px",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            background:
-              "radial-gradient(circle, rgba(180,100,255,0.08), transparent 70%)",
-            filter: "blur(60px)",
+            width: 400,
+            height: 400,
+            bottom: "-12%",
+            left: "-8%",
+            background: "radial-gradient(circle, rgba(255,60,120,0.08), transparent 70%)",
           }}
         />
       </div>
@@ -69,28 +48,23 @@ export default function Hero() {
       <FloatingHearts />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col gap-5 items-center justify-center px-4">
-        {/* Show typewriter when step is QUOTE or beyond (but not EXPERIENCE) */}
+      <div className="relative z-10 flex flex-col gap-4 items-center justify-center px-4">
+        {/* Show typewriter when step is QUOTE or beyond */}
         {(currentStep === STEPS.QUOTE ||
           currentStep === STEPS.NAME ||
-          currentStep === STEPS.BUTTON) && <Typewriter />}
+          currentStep === STEPS.BUTTON) && <TypewriterQuote />}
 
         <NameReveal />
         <CTAButton />
-
-        {/* Experience started content */}
-        {hasStartedExperience && (
-        <Experience/>
-        )}
       </div>
 
       {/* Bottom gradient fade */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+        className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
         style={{
-          background: "linear-gradient(to top, rgba(5,0,16,0.8), transparent)",
+          background: "linear-gradient(to top, var(--color-bg-primary), transparent)",
         }}
       />
-    </motion.section>
+    </section>
   );
 }

@@ -1,16 +1,34 @@
-import React from "react";
-import { Routes, Route } from "react-router";
+import { Routes, Route, useLocation } from "react-router";
+import { AppProvider, useAppContext } from "./context/AppContext";
 import Home from "./pages/Home";
-import { AppProvider } from "./context/AppContext";
+import ExperiencePage from "./pages/ExperiencePage";
 import Surprise from "./pages/Surprise";
+import BackgroundMusic from "./components/common/BackgroundMusic";
+
+/** Inner layout that can access AppContext */
+function AppLayout() {
+  const { isMusicPlaying } = useAppContext();
+  const location = useLocation();
+
+  const isSurprisePage = location.pathname === "/surprise";
+
+  return (
+    <>
+      <BackgroundMusic active={isMusicPlaying && !isSurprisePage} />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/experience" element={<ExperiencePage />} />
+        <Route path="/surprise" element={<Surprise />} />
+      </Routes>
+    </>
+  );
+}
 
 const App = () => {
   return (
     <AppProvider>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/surprise" element={<Surprise />} />
-      </Routes>
+      <AppLayout />
     </AppProvider>
   );
 };

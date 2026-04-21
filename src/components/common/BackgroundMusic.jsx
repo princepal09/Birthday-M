@@ -1,57 +1,54 @@
 import { useEffect, useRef } from "react";
-import { useAppContext } from "../../context/AppContext";
-import { BG_MUSIC_PATH } from "../../utils/constants";
+import music from "../../assets/music/music.mp3";
 
-export default function BackgroundMusic() {
-  const { isMusicPlaying } = useAppContext();
+/**
+ * Background music player.
+ * - Waits MUSIC_DELAY (5s) before attempting playback
+ * - Fades in volume gradually
+ * - Falls back to user interaction if browser blocks autoplay
+ */
+export default function BackgroundMusic({ active = false }) {
   const audioRef = useRef(null);
-  const hasInitialized = useRef(false);
+  const hasStarted = useRef(false);
 
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    if (isMusicPlaying && !hasInitialized.current) {
-      hasInitialized.current = true;
+    if (active && !hasStarted.current) {
+      hasStarted.current = true;
       audio.volume = 0;
       audio.loop = true;
 
-      // Attempt autoplay — will fail without user gesture on most browsers
-      const playPromise = audio.play();
+      const fadeIn = () => {
+        let vol = 0;
+        const interval = setInterval(() => {
+          vol = Math.min(vol + 0.015, 0.35);
+          audio.volume = vol;
+          if (vol >= 0.35) clearInterval(interval);
+        }, 100);
+      };
 
+      const playPromise = audio.play();
       if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            // Fade in
-            let vol = 0;
-            const fadeIn = setInterval(() => {
-              vol = Math.min(vol + 0.02, 0.4);
-              audio.volume = vol;
-              if (vol >= 0.4) clearInterval(fadeIn);
-            }, 80);
-          })
-          .catch(() => {
-            // Autoplay blocked — try on next user interaction
-            const resumePlay = () => {
-              audio.play().then(() => {
-                let vol = 0;
-                const fadeIn = setInterval(() => {
-                  vol = Math.min(vol + 0.02, 0.4);
-                  audio.volume = vol;
-                  if (vol >= 0.4) clearInterval(fadeIn);
-                }, 80);
-              });
-              document.removeEventListener("click", resumePlay);
-              document.removeEventListener("touchstart", resumePlay);
-            };
-            document.addEventListener("click", resumePlay, { once: true });
-            document.addEventListener("touchstart", resumePlay, { once: true });
-          });
+        playPromise.then(fadeIn).catch(() => {
+          // Fallback — shouldn't happen since triggered by user click
+          const resumePlay = () => {
+            audio.play().then(fadeIn).catch(() => {});
+            document.removeEventListener("click", resumePlay);
+            document.removeEventListener("touchstart", resumePlay);
+          };
+          document.addEventListener("click", resumePlay, { once: true });
+          document.addEventListener("touchstart", resumePlay, { once: true });
+        });
       }
     }
+  }, [active]);
 
-    if (!isMusicPlaying && hasInitialized.current) {
-      // Fade out
+  // Fade out when deactivated
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!active && hasStarted.current && audio && !audio.paused) {
       let vol = audio.volume;
       const fadeOut = setInterval(() => {
         vol = Math.max(vol - 0.02, 0);
@@ -62,12 +59,12 @@ export default function BackgroundMusic() {
         }
       }, 80);
     }
-  }, [isMusicPlaying]);
+  }, [active]);
 
   return (
     <audio
       ref={audioRef}
-      src={BG_MUSIC_PATH}
+      src={music}
       preload="auto"
       style={{ display: "none" }}
     />

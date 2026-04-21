@@ -8,7 +8,6 @@ const AppContext = createContext(null);
 export function AppProvider({ children }) {
   const [isLoading, setIsLoading] = useState(true);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
-  const [hasStartedExperience, setHasStartedExperience] = useState(false);
   const [currentStep, setCurrentStep] = useState(STEPS.LOADER);
 
   const advanceStep = useCallback((step) => {
@@ -28,34 +27,17 @@ export function AppProvider({ children }) {
     setCurrentStep(STEPS.QUOTE);
   }, []);
 
-  const startExperience = useCallback(() => {
-    setHasStartedExperience(true);
-    setCurrentStep(STEPS.EXPERIENCE);
-  }, []);
-
   const value = useMemo(
     () => ({
       isLoading,
       isMusicPlaying,
-      hasStartedExperience,
       currentStep,
       advanceStep,
       startMusic,
       stopMusic,
       finishLoading,
-      startExperience,
     }),
-    [
-      isLoading,
-      isMusicPlaying,
-      hasStartedExperience,
-      currentStep,
-      advanceStep,
-      startMusic,
-      stopMusic,
-      finishLoading,
-      startExperience,
-    ]
+    [isLoading, isMusicPlaying, currentStep, advanceStep, startMusic, stopMusic, finishLoading]
   );
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

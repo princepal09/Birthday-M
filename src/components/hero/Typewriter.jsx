@@ -4,7 +4,11 @@ import { useTypewriter, Cursor } from "react-simple-typewriter";
 import { useAppContext } from "../../context/AppContext";
 import { ROMANTIC_QUOTE, STEPS } from "../../utils/constants";
 
-export default function Typewriter() {
+/**
+ * Typewriter quote — types out the romantic quote character by character.
+ * Uses react-simple-typewriter (lightweight). Minimal Framer Motion for fade-in only.
+ */
+export default function TypewriterQuote() {
   const { currentStep, advanceStep } = useAppContext();
   const isActive = currentStep === STEPS.QUOTE;
 
@@ -16,12 +20,11 @@ export default function Typewriter() {
     delaySpeed: 1000,
   });
 
-  // Detect completion (when full text matches)
+  // Advance to NAME step when quote finishes typing
   useEffect(() => {
     if (isActive && text === ROMANTIC_QUOTE) {
-      setTimeout(() => {
-        advanceStep(STEPS.NAME);
-      }, 1200);
+      const timer = setTimeout(() => advanceStep(STEPS.NAME), 1200);
+      return () => clearTimeout(timer);
     }
   }, [text, isActive, advanceStep]);
 
@@ -29,23 +32,24 @@ export default function Typewriter() {
 
   return (
     <motion.div
-      className="text-center mt-100 px-6 max-w-2xl mx-auto"
-      initial={{ opacity: 0, y: 30 }}
+      className="text-center px-6 max-w-2xl mx-auto"
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1, ease: "easeOut" }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
     >
       <p
         className="text-xl md:text-3xl lg:text-4xl font-light italic leading-relaxed"
         style={{
-          fontFamily: "'Cormorant Garamond', serif",
-          color: "rgba(255, 220, 240, 0.95)",
-          textShadow: "0 0 40px rgba(255,100,180,0.2)",
+          fontFamily: "var(--font-body)",
+          fontWeight: 300,
+          color: "var(--color-rose-muted)",
+          textShadow: "0 0 30px rgba(255,100,180,0.15)",
           minHeight: "3em",
         }}
       >
         {"\u201C"}
         {text}
-        <Cursor cursorStyle="|" cursorColor="rgba(255,180,220,0.8)" />
+        <Cursor cursorStyle="|" cursorColor="rgba(255,180,220,0.7)" />
         {text === ROMANTIC_QUOTE && "\u201D"}
       </p>
     </motion.div>

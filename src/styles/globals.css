@@ -1,6 +1,23 @@
 @import "tailwindcss";
 
-/* ─── Base Reset & Global Styles ────────────────────────────────────────────── */
+/* ─── Tailwind v4 Theme ─────────────────────────────────────────────────────── */
+
+@theme {
+  --color-bg-primary: #050010;
+  --color-bg-secondary: #0a0018;
+  --color-rose-soft: #ff9bc5;
+  --color-rose-glow: #ff6b9d;
+  --color-rose-muted: rgba(255, 220, 240, 0.9);
+  --color-rose-faint: rgba(255, 220, 240, 0.6);
+  --color-purple-deep: #1a0030;
+  --color-purple-soft: #b864ff;
+  --color-glass-bg: rgba(255, 255, 255, 0.06);
+  --color-glass-border: rgba(255, 180, 220, 0.18);
+  --font-display: "Great Vibes", cursive;
+  --font-body: "Outfit", system-ui, sans-serif;
+}
+
+/* ─── Base Reset ────────────────────────────────────────────────────────────── */
 
 *,
 *::before,
@@ -17,14 +34,13 @@ html {
 }
 
 body {
-  font-family: "Outfit", system-ui, -apple-system, sans-serif;
-  background: #050010;
-  color: rgba(255, 220, 240, 0.9);
+  font-family: var(--font-body);
+  background: var(--color-bg-primary);
+  color: var(--color-rose-muted);
   overflow-x: hidden;
   min-height: 100vh;
 }
 
-/* Prevent text selection on the experience (keeps it feeling cinematic) */
 #root {
   min-height: 100vh;
   user-select: none;
@@ -34,7 +50,7 @@ body {
 /* ─── Scrollbar ─────────────────────────────────────────────────────────────── */
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -42,31 +58,168 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 100, 180, 0.3);
-  border-radius: 3px;
+  background: rgba(255, 100, 180, 0.25);
+  border-radius: 2px;
 }
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 100, 180, 0.5);
-}
-
-/* ─── Selection ─────────────────────────────────────────────────────────────── */
 
 ::selection {
   background: rgba(255, 100, 180, 0.3);
   color: #fff;
 }
 
-/* ─── Focus Styles ──────────────────────────────────────────────────────────── */
+/* ─── Keyframe Animations ───────────────────────────────────────────────────── */
 
+@keyframes twinkle {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+  10% { opacity: 0.5; }
+  90% { opacity: 0.3; }
+  100% {
+    transform: translateY(-100vh) scale(0.6);
+    opacity: 0;
+  }
+}
+
+@keyframes soft-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes shimmer-line {
+  0% { transform: scaleX(0.6); opacity: 0.3; }
+  50% { transform: scaleX(1); opacity: 0.8; }
+  100% { transform: scaleX(0.6); opacity: 0.3; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow-breathe {
+  0%, 100% { text-shadow: 0 0 20px rgba(255, 150, 200, 0.3); }
+  50% { text-shadow: 0 0 40px rgba(255, 150, 200, 0.5); }
+}
+
+/* ─── Utility Classes ───────────────────────────────────────────────────────── */
+
+/* Starfield — subtle dots scattered across the page */
+.star-field {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(255, 200, 230, 0.5);
+  animation: twinkle var(--duration, 4s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* Glassmorphism card */
+.glass-card {
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px rgba(255, 100, 180, 0.12),
+              inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #ff9bc5, #ffd4e8, #e8a0ff, #ffb8d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow text */
+.glow-text {
+  animation: glow-breathe 3s ease-in-out infinite;
+}
+
+/* Fade in */
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out both;
+}
+
+/* Ambient background gradient */
+.bg-ambient {
+  background: linear-gradient(
+    135deg,
+    #0a0015 0%,
+    #12002a 25%,
+    #0d0020 50%,
+    #08001a 75%,
+    #050010 100%
+  );
+}
+
+/* Ambient orb glow — reusable */
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+}
+
+/* Button base */
+.btn-romantic {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2.5rem;
+  border-radius: 9999px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--color-rose-muted);
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 180, 220, 0.22);
+  box-shadow: 0 6px 24px rgba(255, 100, 180, 0.12);
+  cursor: pointer;
+  outline: none;
+  transition: all 0.35s ease;
+  position: relative;
+}
+
+.btn-romantic:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 180, 220, 0.4);
+  box-shadow: 0 8px 36px rgba(255, 100, 180, 0.25);
+  transform: translateY(-2px);
+}
+
+.btn-romantic:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Focus styles */
 *:focus-visible {
   outline: 2px solid rgba(255, 150, 200, 0.5);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
-/* ─── Utility: Hide visually but keep accessible ────────────────────────────── */
-
+/* SR only */
 .sr-only {
   position: absolute;
   width: 1px;
