@@ -48,7 +48,7 @@ export default function Hero() {
       <FloatingHearts />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col gap-4 items-center justify-center px-4">
+      <div className="relative p-10! z-10 flex flex-col gap-4 items-center justify-center px-4">
         {/* Show typewriter when step is QUOTE or beyond */}
         {(currentStep === STEPS.QUOTE ||
           currentStep === STEPS.NAME ||

@@ -50,7 +50,8 @@ export default function Loader() {
               top: "30%",
               left: "50%",
               transform: "translate(-50%, -50%)",
-              background: "radial-gradient(circle, rgba(180,80,255,0.2), transparent 70%)",
+              background:
+                "radial-gradient(circle, rgba(180,80,255,0.2), transparent 70%)",
               opacity: 0.3,
             }}
           />
@@ -65,7 +66,8 @@ export default function Loader() {
                 height: p.size,
                 left: `${p.x}%`,
                 top: `${p.y}%`,
-                background: "radial-gradient(circle, rgba(255,100,180,0.7), rgba(120,80,255,0.3))",
+                background:
+                  "radial-gradient(circle, rgba(255,100,180,0.7), rgba(120,80,255,0.3))",
                 boxShadow: "0 0 8px rgba(255,100,180,0.4)",
                 animation: `float-up ${p.duration + 3}s ease-in-out ${p.delay}s infinite`,
               }}
@@ -73,7 +75,7 @@ export default function Loader() {
           ))}
 
           {/* Center text */}
-          <div className="relative z-10 text-center px-6 animate-fade-in">
+          <div className="relative z-10 text-center animate-fade-in">
             <p
               className="text-lg md:text-2xl font-light tracking-wide glow-text"
               style={{ fontFamily: "var(--font-body)" }}
@@ -83,9 +85,10 @@ export default function Loader() {
 
             {/* Pulsing shimmer line */}
             <div
-              className="mt-8 mx-auto h-[2px] w-48 rounded-full"
+              className="mt-8 mx-auto h-0.5 w-48 rounded-full"
               style={{
-                background: "linear-gradient(90deg, transparent, rgba(255,100,180,0.5), rgba(180,80,255,0.5), transparent)",
+                background:
+                  "linear-gradient(90deg, transparent, rgba(255,100,180,0.5), rgba(180,80,255,0.5), transparent)",
                 animation: "shimmer-line 2s ease-in-out infinite",
               }}
             />

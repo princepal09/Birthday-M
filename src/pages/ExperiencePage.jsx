@@ -14,7 +14,7 @@ export default function ExperiencePage() {
   return (
     <main
       id="experience-page"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-ambient"
+      className="relative p-10 min-h-screen flex items-center justify-center overflow-hidden bg-ambient"
     >
       <StarField />
       <FloatingHearts />
@@ -36,14 +36,14 @@ export default function ExperiencePage() {
 
       {/* Content */}
       <motion.div
-        className="relative z-10 flex flex-col items-center justify-center px-6 sm:px-8 py-12 w-full max-w-lg mx-auto"
+        className="relative  z-10 flex flex-col items-center justify-center px-5! md:px-0 sm:px-8 py-12 w-full max-w-lg mx-auto"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
       >
         {/* Title */}
         <h1
-          className="text-4xl md:text-6xl mb-4 gradient-text text-center"
+          className="text-4xl md:text-6xl mb-4! gradient-text text-center"
           style={{
             fontFamily: "var(--font-display)",
             filter: "drop-shadow(0 0 20px rgba(255,150,200,0.2))",
@@ -54,7 +54,7 @@ export default function ExperiencePage() {
 
         {/* Subtitle */}
         <p
-          className="text-sm md:text-base mb-10 text-center"
+          className="text-sm mt-4! md:text-base mb-10 text-center"
           style={{
             color: "var(--color-rose-faint)",
             letterSpacing: "0.04em",
@@ -64,7 +64,7 @@ export default function ExperiencePage() {
         </p>
 
         {/* Glass card */}
-        <div className="glass-card p-8 md:p-10 w-full">
+        <div className="glass-card flex gap-5 flex-col justify-center md:p-10 w-full">
           {/* Glow overlay */}
           <div
             className="absolute inset-0 rounded-3xl pointer-events-none"

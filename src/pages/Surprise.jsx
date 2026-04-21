@@ -33,7 +33,7 @@ export default function Surprise() {
 
       {/* Content */}
       <motion.div
-        className="relative z-10 flex flex-col items-center gap-6 md:gap-8 w-full max-w-3xl"
+        className="relative p-5! z-10 flex flex-col items-center gap-6 md:gap-3! w-full max-w-3xl"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
@@ -42,7 +42,7 @@ export default function Surprise() {
         <h1
           className="text-3xl sm:text-4xl md:text-5xl text-center gradient-text"
           style={{
-            fontFamily: "var(--font-display)",
+            fontFamily: "var(--font-display)",  
             filter: "drop-shadow(0 0 16px rgba(255,150,200,0.2))",
           }}
         >

@@ -1,16 +1,111 @@
-# React + Vite
+# 🎂 Birthday Surprise App 💖
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A romantic, cinematic birthday web experience built with React + Vite.
+Designed to create an emotional journey with messages, music, and a special video surprise 🎬✨
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Features
 
-## React Compiler
+* 💖 Beautiful romantic UI (pink/purple theme)
+* 🎶 Background music with fade-in & fade-out
+* 🎬 Surprise video section
+* 📱 Fully responsive (mobile-first)
+* ⚡ Fast performance with Vite
+* 🧩 Clean component-based architecture
+* 🎯 Minimal animations (no overuse of Framer Motion)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🧱 Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* ⚛️ React
+* ⚡ Vite
+* 🎨 Tailwind CSS
+* 🎞️ Framer Motion (minimal usage)
+* 🧭 React Router
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+│
+├── components/
+│   └── common/
+│       └── BackgroundMusic.jsx
+│
+├── pages/
+│   ├── Home.jsx
+│   ├── ExperiencePage.jsx
+│   └── Surprise.jsx
+│
+├── context/
+│   └── AppContext.jsx
+│
+public/
+├── videos/
+├── music/
+└── images/
+```
+
+---
+
+## 🎥 Assets Usage
+
+Large files like videos, music, and images are stored inside the `public/` folder:
+
+```
+public/videos/vid.mp4
+public/music/music.mp3
+public/images/
+```
+
+Usage example:
+
+```jsx
+<video controls>
+  <source src="/videos/vid.mp4" type="video/mp4" />
+</video>
+```
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/your-username/your-repo.git
+cd your-repo
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Run development server
+
+```bash
+npm run dev
+```
+
+---
+
+## ⚠️ Notes
+
+* Large media files should NOT be stored inside `src/`
+* Use the `public/` folder for videos, music, and images
+* Keep video size optimized (<20MB recommended)
+
+---
+
+## ❤️ Made With Love
+
+This project was built to create a special moment —
+because some people deserve more than just a "Happy Birthday" 🎂✨
+
+---
