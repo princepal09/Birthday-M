@@ -118,7 +118,7 @@ export default function Loader() {
                 ease: "easeInOut",
               }}
             >
-              Preparing something special for you ❤️
+              Preparing something special for you ...❤️
             </motion.p>
 
             {/* Pulsing bar */}

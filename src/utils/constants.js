@@ -4,17 +4,17 @@
 export const LOADER_DURATION = 2800;
 
 /** The romantic quote displayed via typewriter */
-export const ROMANTIC_QUOTE =
-  "In a universe of infinite stars, my heart found its way to you…";
+export const ROMANTIC_QUOTE = "Out of all the days in the year, today is my favourite❤️ Because It gave me to you."
+  // "In a universe of infinite stars, my heart found its way to you…";
 
 /** Her name — the centerpiece of the reveal */
-export const HER_NAME = "My Love";
+export const HER_NAME = "Happy Birthday My Love";
 
 /** Typewriter speed: delay between each character (ms) */
 export const TYPEWRITER_SPEED = 65;
 
 /** Number of floating hearts rendered in the background */
-export const HEART_COUNT = 18;
+export const HEART_COUNT = 30;
 
 /** Steps in the cinematic experience flow */
 export const STEPS = {
