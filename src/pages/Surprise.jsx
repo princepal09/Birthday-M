@@ -110,7 +110,7 @@ export default function Surprise() {
 
         {/* Divider */}
         <div
-          className="w-20 h-[1px]"
+          className="w-20 h-px"
           style={{
             background:
               "linear-gradient(90deg, transparent, rgba(255,150,200,0.35), transparent)",

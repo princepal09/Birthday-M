@@ -108,7 +108,7 @@ export default function ExperiencePage() {
 
           {/* Divider */}
           <div
-            className="mx-auto h-[1px] w-32 mb-6"
+            className="mx-auto h-px w-32 mb-6"
             style={{
               background:
                 "linear-gradient(90deg, transparent, rgba(255,150,200,0.4), transparent)",
