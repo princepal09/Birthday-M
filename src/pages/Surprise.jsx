@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import vid from "../assets/video/vid.mp4";
+import vid from "/video/vid.mp4";
 import StarField from "../components/common/StarField";
 
 /**

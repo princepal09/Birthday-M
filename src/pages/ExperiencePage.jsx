@@ -29,7 +29,8 @@ export default function ExperiencePage() {
           top: "20%",
           left: "50%",
           transform: "translateX(-50%)",
-          background: "radial-gradient(circle, rgba(180,80,255,0.1), transparent 70%)",
+          background:
+            "radial-gradient(circle, rgba(180,80,255,0.1), transparent 70%)",
         }}
       />
 
@@ -68,7 +69,8 @@ export default function ExperiencePage() {
           <div
             className="absolute inset-0 rounded-3xl pointer-events-none"
             style={{
-              background: "radial-gradient(circle at top, rgba(255,150,200,0.1), transparent 60%)",
+              background:
+                "radial-gradient(circle at top, rgba(255,150,200,0.1), transparent 60%)",
             }}
             aria-hidden="true"
           />
@@ -82,7 +84,8 @@ export default function ExperiencePage() {
           >
             From the moment you came into my life, everything feels softer,
             warmer, and more beautiful. 💖
-            <br /><br />
+            <br />
+            <br />
             You're not just my love — you're my favorite feeling, my peace, and
             my happiest place. 🌙✨
           </p>
@@ -107,7 +110,8 @@ export default function ExperiencePage() {
           <div
             className="mx-auto h-[1px] w-32 mb-6"
             style={{
-              background: "linear-gradient(90deg, transparent, rgba(255,150,200,0.4), transparent)",
+              background:
+                "linear-gradient(90deg, transparent, rgba(255,150,200,0.4), transparent)",
             }}
           />
 
