@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import vid from "/video/vid.mp4";
 import StarField from "../components/common/StarField";
 
 /**
@@ -42,7 +41,7 @@ export default function Surprise() {
         <h1
           className="text-3xl sm:text-4xl md:text-5xl text-center gradient-text"
           style={{
-            fontFamily: "var(--font-display)",  
+            fontFamily: "var(--font-display)",
             filter: "drop-shadow(0 0 16px rgba(255,150,200,0.2))",
           }}
         >
@@ -93,7 +92,7 @@ export default function Surprise() {
                 display: "block",
               }}
             >
-              <source src={vid} type="video/mp4" />
+              <source src='https://res.cloudinary.com/dwpdys0gh/video/upload/v1776852047/video_2023-02-10_12-57-50_l2fqdm.mp4' type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
