@@ -8,6 +8,7 @@ import StarField from "../components/common/StarField";
  * - Clean, focused layout
  */
 export default function Surprise() {
+  const videoUrl = "https://res.cloudinary.com/dwpdys0gh/video/upload/v1776852047/video_2023-02-10_12-57-50_l2fqdm.mp4"
   return (
     <main
       id="surprise-page"
@@ -92,7 +93,10 @@ export default function Surprise() {
                 display: "block",
               }}
             >
-              <source src='https://res.cloudinary.com/dwpdys0gh/video/upload/v1776852047/video_2023-02-10_12-57-50_l2fqdm.mp4' type="video/mp4" />
+              <source
+                src={videoUrl}
+                type="video/mp4"
+              />
               Your browser does not support the video tag.
             </video>
           </div>
