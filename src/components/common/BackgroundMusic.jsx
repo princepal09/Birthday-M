@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import music from "/music/music1.mp3"
+import music from "/music/music1.mp3";
 
 /**
  * Background music player.
@@ -34,7 +34,10 @@ export default function BackgroundMusic({ active = false }) {
         playPromise.then(fadeIn).catch(() => {
           // Fallback — shouldn't happen since triggered by user click
           const resumePlay = () => {
-            audio.play().then(fadeIn).catch(() => {});
+            audio
+              .play()
+              .then(fadeIn)
+              .catch(() => {});
             document.removeEventListener("click", resumePlay);
             document.removeEventListener("touchstart", resumePlay);
           };
