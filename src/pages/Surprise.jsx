@@ -8,7 +8,7 @@ import StarField from "../components/common/StarField";
  * - Clean, focused layout
  */
 export default function Surprise() {
-  const videoUrl = "https://res.cloudinary.com/dwpdys0gh/video/upload/v1776852047/video_2023-02-10_12-57-50_l2fqdm.mp4"
+  const videoUrl = "https://res.cloudinary.com/dwpdys0gh/video/upload/v1776967930/Birthday_M_fiuiub.mp4"
   return (
     <main
       id="surprise-page"
