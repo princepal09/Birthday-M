@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import music from "/music/music.mp3"
+import music from "/music/music1.mp3"
 
 /**
  * Background music player.
